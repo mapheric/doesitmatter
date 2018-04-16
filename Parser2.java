@@ -2455,11 +2455,11 @@ public class Parser2
     	if(id.equals(";")){
     		return "00";	//error code
     	}else if(copy.get(place + 1).equals(";")){						//if it's the end, return sum of balance
-    		//System.out.println("z = " + z + ". Current token: " + copy.get(place) + " at position: " + place + ". Peek: " + tempVars.peek());
+    		System.out.println("z = " + z + ". Current token: " + copy.get(place) + " at position: " + place + ". Peek: " + tempVars.peek());
     		return parseAdd();
     	}else if(copy.get(place + 1).equals("(")){						//if it's a function  
     		return parseFunction(id,place);
-    	}else if(id.equals(copy.get(place + 1).equals(")"))){			//if it's the end of a bracketed computation				
+    	}else if(id.equals(copy.get(place + 1))){			//if it's the end of a bracketed computation				
     		return parseExpression(id, place + 2);
     	}else if(copy.get(place + 1).equals("[")){
     		return parseArr(id, place);
@@ -2535,6 +2535,7 @@ public class Parser2
 		System.out.println("-----");
     	String bTempVars = "";
     	//String curr = "";
+    	System.out.println("This is PEEK: " + tempVars.peek());
     	String curr = tempVars.pop();
 //    	if(tempVars.peek().equals("$") && !tempVars.peek().equals(null)){
 //    		curr = tempVars.pop();
@@ -2560,6 +2561,7 @@ public class Parser2
     			curr = tempVars.pop();
     		}
     	}
+    	tempVars.add("$");
     	return id;
     }
     public static String parseArr(String id, int place){					//parses an array term, returning the temp value
